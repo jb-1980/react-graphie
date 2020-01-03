@@ -16,7 +16,9 @@ import {
   Circle,
   Ellipse,
   EndpointCircles,
+  Exponential,
   Line,
+  Logarithmic,
   Parabola,
   Parametric,
   Path,
@@ -61,7 +63,9 @@ function App() {
     circle: <TestCircle />,
     ellipse: <TestEllipse />,
     endpointCircles: <TestEndpointCircles />,
+    exponential: <TestExponential />,
     line: <TestLine />,
+    logarithmic: <TestLogarithmic />,
     parabola: <TestParabola />,
     parametric: <TestParametric />,
     path: <TestPath />,
@@ -195,12 +199,34 @@ const TestEndpointCircles = () => (
   />
 )
 
+const TestExponential = () => (
+  <Exponential
+    key="test-exponential"
+    a={0.5}
+    b={Math.E}
+    h={-1}
+    k={3}
+    style={{ stroke: KhanColors.TEAL_D }}
+  />
+)
+
 const TestLine = () => (
   <Line
     key="test-line"
     start={[-8, 8]}
     end={[8, -8]}
     style={{ stroke: KhanColors.BLUE, strokeWidth: 3 }}
+  />
+)
+
+const TestLogarithmic = () => (
+  <Logarithmic
+    key="test-logarithmic"
+    a={1}
+    b={2}
+    h={-1}
+    k={3}
+    style={{ stroke: KhanColors.TEAL_D }}
   />
 )
 

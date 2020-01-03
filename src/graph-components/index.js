@@ -4,9 +4,11 @@ import { Axes } from "./axes"
 import { Circle } from "./circle"
 import { Ellipse } from "./ellipse"
 import { EndpointCircles } from "./endpoint-circles"
+import { Exponential } from "./exponential"
 import { Grid } from "./grid"
 import { Label, Labels } from "./labels"
 import { Line } from "./line"
+import { Logarithmic } from "./logarithmic"
 import { Parabola } from "./parabola"
 import { Parametric } from "./parametric"
 import { Path } from "./path"
@@ -25,10 +27,12 @@ export {
   Circle,
   Ellipse,
   EndpointCircles,
+  Exponential,
   Grid,
   Label,
   Labels,
   Line,
+  Logarithmic,
   Parabola,
   Parametric,
   Path,
