@@ -23,6 +23,12 @@ class GraphUtils {
     return [r[0] * Math.cos(theta), r[1] * Math.sin(theta)]
   }
 
+  getSlope = (point1: number[], point2: number[]) =>
+    (point1[1] - point2[1]) / (point1[0] - point2[0])
+
+  getIntercept = (point1: number[], point2: number[]) =>
+    point1[1] - this.getSlope(point1, point2) * point1[0]
+
   getDistance = (point1: number[], point2: number[]) =>
     kpoint.distanceToPoint(point1, point2)
 

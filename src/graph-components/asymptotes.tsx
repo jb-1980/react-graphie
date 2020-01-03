@@ -20,7 +20,6 @@ export const Asymptotes = ({ fn, style }: propTypes) => {
 
   for (let t = min; t <= max; t += step) {
     const f_t = fn(t)
-    console.log({ t, step })
     // since step size is so small, we can find the value that flips the output,
     // and present it as the asymptote
     if (

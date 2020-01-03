@@ -49,7 +49,11 @@ export const Label = ({
       y={y}
       width={xUnit}
       height={yUnit}
-      style={{ textAlign: "center", overflow: "visible" }}
+      style={{
+        textAlign: "center",
+        overflow: "visible",
+        pointerEvents: "none",
+      }}
     >
       <span
         dangerouslySetInnerHTML={{ __html: _text }}

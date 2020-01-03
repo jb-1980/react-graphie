@@ -23,6 +23,10 @@ const defaultOptions = {
   labelStep: [1, 1],
   yLabelFormat: y => y,
   xLabelFormat: x => x,
+  isDragging: false, // Consumed by movables to decide when to update
+  setIsDragging: x => x, // Consumed by movables to begin a movable event
+  mouseMove: null, // Consumed by movables, usually to get the position
+  setMouseMove: x => null,
 }
 const Context = React.createContext(defaultOptions)
 
@@ -87,6 +91,8 @@ const GraphieProvider = ({ options, children }: propTypes) => {
     }
     return acc
   }, {})
+
+  // set up axis labels
   const {
     scale,
     grid,
@@ -115,8 +121,31 @@ const GraphieProvider = ({ options, children }: propTypes) => {
     rangeShift = axisCenterY - xUnit / 2
   }
 
+  // mouse functions for movable components to consume
+  let [isDragging, setIsDragging] = React.useState(false)
+  let [mouseMove, setMouseMove] = React.useState(null)
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (isDragging) {
+      e.persist()
+      setMouseMove(e)
+    }
+  }
+
+  const onMouseUp = () => {
+    setIsDragging(false)
+    setMouseMove(null)
+  }
   return (
-    <Context.Provider value={{ ...cleanedOptions }}>
+    <Context.Provider
+      value={{
+        ...cleanedOptions,
+        isDragging,
+        setIsDragging,
+        mouseMove,
+        setMouseMove,
+      }}
+    >
       <div>
         <div
           style={{
@@ -134,6 +163,8 @@ const GraphieProvider = ({ options, children }: propTypes) => {
             width={scale[0]}
             height={scale[1]}
             style={{ stroke: "#000", strokeWidth: 3 }}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
           >
             {grid && <Grid />}
             {axes && <Axes />}
@@ -178,6 +209,10 @@ type graphieType = {
   xLabelFormat?: (l: string | number) => string // fn to formate label string for x-axis
   smartLabelPositioning?: boolean // should ignore minus sign?
   isMobile?: boolean
+  isDragging: boolean // Consumed by movables to decide when to update
+  setIsDragging: (x: boolean) => any // Consumed by movables to begin a movable event
+  mouseMove: React.MouseEvent // Consumed by movables, usually to get the position
+  setMouseMove: (x: React.MouseEvent | null) => null // Consumed by movable to reset mousemove
 }
 const useGraphie = () => {
   const graphie: graphieType = React.useContext(Context)

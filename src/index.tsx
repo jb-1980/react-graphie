@@ -2,7 +2,13 @@ import * as React from "react"
 import * as ReactDOM from "react-dom"
 
 import { GraphieProvider } from "./graphie-context"
-import { MovableCircle } from "./movables"
+import {
+  MovableCircle,
+  MovableLine,
+  MovableLineRay,
+  MovableLineSegment,
+  MovablePoint,
+} from "./movables"
 import KhanColors from "./util/colors"
 import {
   Arc,
@@ -25,7 +31,9 @@ import {
 import "./styles.css"
 
 function App() {
-  const [components, setComponents] = React.useState([])
+  const [shapes, setShapes] = React.useState([])
+  const [movables, setMovables] = React.useState([])
+
   const options = {
     axisArrows: "<->",
     gridStep: 1,
@@ -47,7 +55,7 @@ function App() {
     scale: [600, 600],
   }
 
-  const availableComponents = {
+  const availableShapes = {
     arc: <TestArc />,
     asymptotes: <TestAsymptotes />,
     circle: <TestCircle />,
@@ -64,6 +72,15 @@ function App() {
     rect: <TestRect />,
     sinusoid: <TestSinusoid />,
   }
+
+  const availabeMovables = {
+    point: <TestMovablePoint />,
+    circle: <TestMovableCircle />,
+    line: <TestMovableLine />,
+    "line ray": <TestMovableLineRay />,
+    "line segment": <TestMovableLineSegment />,
+  }
+
   return (
     <div
       style={{
@@ -73,27 +90,56 @@ function App() {
         display: "flex",
       }}
     >
-      <GraphieProvider options={options}>
-        {components.map(c => availableComponents[c])}
-      </GraphieProvider>
-      <form>
-        {Object.keys(availableComponents).map(name => (
-          <div key={name}>
-            <label>
-              <input
-                type="checkbox"
-                checked={components.includes(name)}
-                onChange={() =>
-                  components.includes(name)
-                    ? setComponents(components.filter(c => c !== name))
-                    : setComponents([...components, name])
-                }
-              />{" "}
-              {name}
-            </label>
-          </div>
-        ))}
-      </form>
+      <section>
+        <GraphieProvider options={options}>
+          {shapes.map(c => availableShapes[c])}
+          {movables.map(m => availabeMovables[m])}
+        </GraphieProvider>
+      </section>
+      <section>
+        <section>
+          <h2>Graph Shapes</h2>
+          <form>
+            {Object.keys(availableShapes).map(name => (
+              <div key={name}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={shapes.includes(name)}
+                    onChange={() =>
+                      shapes.includes(name)
+                        ? setShapes(shapes.filter(c => c !== name))
+                        : setShapes([...shapes, name])
+                    }
+                  />{" "}
+                  {name}
+                </label>
+              </div>
+            ))}
+          </form>
+        </section>
+        <section>
+          <h2>Graph Movables</h2>
+          <form>
+            {Object.keys(availabeMovables).map(name => (
+              <div key={name}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={movables.includes(name)}
+                    onChange={() =>
+                      movables.includes(name)
+                        ? setMovables(movables.filter(c => c !== name))
+                        : setMovables([...movables, name])
+                    }
+                  />{" "}
+                  {name}
+                </label>
+              </div>
+            ))}
+          </form>
+        </section>
+      </section>
     </div>
   )
 }
@@ -116,14 +162,22 @@ const TestArc = () => (
   />
 )
 
-const TestAsymptotes = () => <Asymptotes fn={x => (1 + 5 * x) / (x - 1)} />
+const TestAsymptotes = () => (
+  <Asymptotes key="test-asymptote" fn={x => (1 + 5 * x) / (x - 1)} />
+)
 
 const TestCircle = () => (
-  <Circle center={[-3, 5]} radius={4} style={{ stroke: KhanColors.GREEN }} />
+  <Circle
+    key="test-circle"
+    center={[-3, 5]}
+    radius={4}
+    style={{ stroke: KhanColors.GREEN }}
+  />
 )
 
 const TestEllipse = () => (
   <Ellipse
+    key="test-ellipse"
     center={[5, -1]}
     radii={[4, 2]}
     style={{ stroke: KhanColors.MAROON_C, strokeWidth: 3 }}
@@ -132,6 +186,7 @@ const TestEllipse = () => (
 
 const TestEndpointCircles = () => (
   <EndpointCircles
+    key="test-endpoint-circles"
     endpointArray={[
       [-8, 8],
       [8, -8],
@@ -142,6 +197,7 @@ const TestEndpointCircles = () => (
 
 const TestLine = () => (
   <Line
+    key="test-line"
     start={[-8, 8]}
     end={[8, -8]}
     style={{ stroke: KhanColors.BLUE, strokeWidth: 3 }}
@@ -149,11 +205,18 @@ const TestLine = () => (
 )
 
 const TestParabola = () => (
-  <Parabola a={1} b={3} c={4} style={{ stroke: KhanColors.RED_D }} />
+  <Parabola
+    key="test-parabola"
+    a={1}
+    b={3}
+    c={4}
+    style={{ stroke: KhanColors.RED_D }}
+  />
 )
 
 const TestParametric = () => (
   <Parametric
+    key="test-parametric"
     fn={x => [x, (1 + 5 * x) / (x - 1)]}
     style={{
       stroke: KhanColors.PINK,
@@ -164,6 +227,7 @@ const TestParametric = () => (
 
 const TestPath = () => (
   <Path
+    key="test-path"
     points={[
       [-9, 0],
       [0, -9],
@@ -177,6 +241,7 @@ const TestPath = () => (
 // TODO: work on domain switches
 const TestPiecewise = () => (
   <Piecewise
+    key="test-piecewise"
     fnArray={[x => 3 * x - 4, t => 4 * t * t - 7]}
     style={{ stroke: KhanColors.PURPLE_D }}
   />
@@ -185,6 +250,7 @@ const TestPiecewise = () => (
 // TODO: work on shading
 const TestPlot = () => (
   <Plot
+    key="test-plot"
     fn={x => 3 * Math.E ** x}
     range={[-10, 10]}
     swapAxes={false}
@@ -194,11 +260,16 @@ const TestPlot = () => (
 
 // TODO: Not quite working
 const TestPolar = () => (
-  <Polar fn={Θ => [Θ, 1 - Math.sin(Θ)]} style={{ stroke: KhanColors.ORANGE }} />
+  <Polar
+    key="test-polar"
+    fn={Θ => [Θ, 1 - Math.sin(Θ)]}
+    style={{ stroke: KhanColors.ORANGE }}
+  />
 )
 
 const TestPolygon = () => (
   <Polygon
+    key="test-polygon"
     points={[
       [0, 8],
       [-8, 5],
@@ -212,6 +283,7 @@ const TestPolygon = () => (
 
 const TestRect = () => (
   <Rect
+    key="test-rect"
     x={-8}
     y={4}
     width={10}
@@ -228,6 +300,7 @@ const TestRect = () => (
 
 const TestSinusoid = () => (
   <Sinusoid
+    key="test-sinusoid"
     a={3}
     b={1}
     c={-Math.PI / 2}
@@ -235,3 +308,68 @@ const TestSinusoid = () => (
     style={{ stroke: KhanColors.PURPLE }}
   />
 )
+
+const TestMovablePoint = () => {
+  let [point, setPoint] = React.useState([5, 5])
+  return (
+    <MovablePoint key="test-movable-point" point={point} setPoint={setPoint} />
+  )
+}
+
+const TestMovableCircle = () => {
+  let [radius, setRadius] = React.useState(4)
+  let [center, setCenter] = React.useState([0, 0])
+  return (
+    <MovableCircle
+      key="test-movable-circle"
+      center={center}
+      radius={radius}
+      setCenter={setCenter}
+      setRadius={setRadius}
+    />
+  )
+}
+
+const TestMovableLine = () => {
+  let [point1, setPoint1] = React.useState([-5, 5])
+  let [point2, setPoint2] = React.useState([5, -5])
+  return (
+    <MovableLine
+      key="test-movable-line"
+      point1={point1}
+      point2={point2}
+      setPoint1={setPoint1}
+      setPoint2={setPoint2}
+      style={{ stroke: KhanColors.BLUE }}
+    />
+  )
+}
+const TestMovableLineRay = () => {
+  let [point1, setPoint1] = React.useState([-5, -5])
+  let [point2, setPoint2] = React.useState([5, 5])
+  return (
+    <MovableLineRay
+      key="test-movable-line-ray"
+      point1={point1}
+      point2={point2}
+      setPoint1={setPoint1}
+      setPoint2={setPoint2}
+      style={{ stroke: KhanColors.BLUE }}
+    />
+  )
+}
+
+const TestMovableLineSegment = () => {
+  let [point1, setPoint1] = React.useState([-5, 5])
+  let [point2, setPoint2] = React.useState([5, -5])
+  return (
+    <MovableLineSegment
+      key="test-movable-line-segment"
+      point1={point1}
+      point2={point2}
+      setPoint1={setPoint1}
+      setPoint2={setPoint2}
+      style={{ stroke: KhanColors.BLUE }}
+    />
+  )
+}

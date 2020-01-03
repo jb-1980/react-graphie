@@ -58,13 +58,11 @@ export const Axes = ({ style }: axesProps) => {
     />
   )
 
-  console.log({ vector })
   const [arrowHeadX, arrowHeadY] = vector.scale(
     GraphUtils.scaleGridUnit(range, scale),
     1 / 3
   )
 
-  console.log({ arrowHeadX, arrowHeadY })
   return (
     <g id="graphie-axes">
       <defs>
