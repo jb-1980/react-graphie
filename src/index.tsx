@@ -3,11 +3,16 @@ import * as ReactDOM from "react-dom"
 
 import { GraphieProvider } from "./graphie-context"
 import {
+  MovableAsymptote,
   MovableCircle,
+  MovableExponential,
   MovableLine,
   MovableLineRay,
   MovableLineSegment,
   MovablePoint,
+  MovableParabola,
+  MovableSinusoid,
+  MovableTangent,
 } from "./movables"
 import KhanColors from "./util/colors"
 import {
@@ -78,11 +83,16 @@ function App() {
   }
 
   const availabeMovables = {
+    asymptote: <TestMovableAsymptote />,
     point: <TestMovablePoint />,
     circle: <TestMovableCircle />,
+    exponential: <TestMovableExponential />,
     line: <TestMovableLine />,
     "line ray": <TestMovableLineRay />,
     "line segment": <TestMovableLineSegment />,
+    parabola: <TestMovableParabola />,
+    sinusoid: <TestMovableSinusoid />,
+    tangent: <TestMovableTangent />,
   }
 
   return (
@@ -342,6 +352,18 @@ const TestMovablePoint = () => {
   )
 }
 
+const TestMovableAsymptote = () => {
+  let [axis, setAxis] = React.useState(5)
+  return (
+    <MovableAsymptote
+      key="test-movable-asymptote"
+      axis={axis}
+      setAxis={setAxis}
+      vertical={true}
+    />
+  )
+}
+
 const TestMovableCircle = () => {
   let [radius, setRadius] = React.useState(4)
   let [center, setCenter] = React.useState([0, 0])
@@ -356,6 +378,21 @@ const TestMovableCircle = () => {
   )
 }
 
+const TestMovableExponential = () => {
+  let [axis, setAxis] = React.useState(0)
+  let [point1, setPoint1] = React.useState([0, 2])
+  let [point2, setPoint2] = React.useState([2, 4])
+  return (
+    <MovableExponential
+      axis={axis}
+      point1={point1}
+      point2={point2}
+      setAxis={setAxis}
+      setPoint1={setPoint1}
+      setPoint2={setPoint2}
+    />
+  )
+}
 const TestMovableLine = () => {
   let [point1, setPoint1] = React.useState([-5, 5])
   let [point2, setPoint2] = React.useState([5, -5])
@@ -391,6 +428,53 @@ const TestMovableLineSegment = () => {
   return (
     <MovableLineSegment
       key="test-movable-line-segment"
+      point1={point1}
+      point2={point2}
+      setPoint1={setPoint1}
+      setPoint2={setPoint2}
+      style={{ stroke: KhanColors.BLUE }}
+    />
+  )
+}
+
+const TestMovableParabola = () => {
+  let [point, setPoint] = React.useState([5, 5])
+  let [vertex, setVertex] = React.useState([0, 0])
+  return (
+    <MovableParabola
+      key="test-movable-parabola"
+      point={point}
+      setPoint={setPoint}
+      vertex={vertex}
+      setVertex={setVertex}
+      style={{ stroke: KhanColors.BLUE }}
+    />
+  )
+}
+
+const TestMovableSinusoid = () => {
+  let [maxpoint, setMaxpoint] = React.useState([3, 5])
+  let [midpoint, setMidpoint] = React.useState([0, 0])
+
+  return (
+    <MovableSinusoid
+      key="test-movable-sinusoid"
+      maxpoint={maxpoint}
+      midpoint={midpoint}
+      setMaxpoint={setMaxpoint}
+      setMidpoint={setMidpoint}
+      style={{ stroke: KhanColors.BLUE }}
+    />
+  )
+}
+
+const TestMovableTangent = () => {
+  let [point1, setPoint1] = React.useState([3, 5])
+  let [point2, setPoint2] = React.useState([0, 0])
+
+  return (
+    <MovableTangent
+      key="test-movable-tangent"
       point1={point1}
       point2={point2}
       setPoint1={setPoint1}

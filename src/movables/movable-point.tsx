@@ -37,7 +37,7 @@ export const MovablePoint = ({ point, setPoint, style }: propType) => {
     fill: KhanColors.PINK,
     stroke: "transparent",
     strokeWidth: 5,
-    pointerEvents: "all",
+    cursor: "move",
     ...style,
   }
   return (

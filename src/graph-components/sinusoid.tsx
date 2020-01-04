@@ -14,7 +14,10 @@ export const Sinusoid = ({ a, b, c, d, style }: sinusoidProps) => {
   const { range, scale, axisCenter } = useGraphie()
   const _d = d + axisCenter[1]
   const _c = c + axisCenter[0]
-  const path = GraphUtils.svgSinusoidPath(a, b, _c, _d, range, scale)
+  const path = React.useMemo(
+    () => GraphUtils.svgSinusoidPath(a, b, _c, _d, range, scale),
+    [a, b, _c, _d, range, scale]
+  )
 
   const sinusoidStyle = {
     fill: "none",
