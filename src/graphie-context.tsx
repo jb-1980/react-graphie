@@ -23,6 +23,7 @@ const defaultOptions = {
   labelStep: [1, 1],
   yLabelFormat: y => y,
   xLabelFormat: x => x,
+  snap: [0.5, 0.5], // used to determine coordinate round to
   isDragging: false, // Consumed by movables to decide when to update
   setIsDragging: x => x, // Consumed by movables to begin a movable event
   mouseMove: null, // Consumed by movables, usually to get the position
@@ -162,7 +163,11 @@ const GraphieProvider = ({ options, children }: propTypes) => {
             version="1.1"
             width={scale[0]}
             height={scale[1]}
-            style={{ stroke: "#000", strokeWidth: 3 }}
+            style={{
+              stroke: "#000",
+              strokeWidth: 3,
+              cursor: isDragging ? "move" : "inherit",
+            }}
             onMouseMove={onMouseMove}
             onMouseUp={onMouseUp}
           >
@@ -210,6 +215,7 @@ type graphieType = {
   smartLabelPositioning?: boolean // should ignore minus sign?
   isMobile?: boolean
   isDragging: boolean // Consumed by movables to decide when to update
+  snap: number[]
   setIsDragging: (x: boolean) => any // Consumed by movables to begin a movable event
   mouseMove: React.MouseEvent // Consumed by movables, usually to get the position
   setMouseMove: (x: React.MouseEvent | null) => null // Consumed by movable to reset mousemove

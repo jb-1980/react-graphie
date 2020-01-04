@@ -34,7 +34,12 @@ export const MovableExponential = ({
 
   const _setAxis = (x: number) => {
     // restrict asymptote to only move up to the closes point
-    if (k < point1[1] === k < point2[1] && x < point1[1] === x < point2[1]) {
+    if (
+      k < point1[1] === k < point2[1] &&
+      x < point1[1] === x < point2[1] &&
+      x !== point1[1] &&
+      x !== point2[1]
+    ) {
       // both points are on the same side of the asymptote
       return setAxis(x)
     }

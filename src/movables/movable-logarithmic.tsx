@@ -48,8 +48,13 @@ export const MovableLogarithmic = ({
 
   // modify set functions to constrain movement to mathematically logical positions
   const _setAxis = (x: number) => {
-    // restrict asymptote to only move up to the closes point
-    if (k < point1[0] === k < point2[0] && x < point1[0] === x < point2[0]) {
+    // restrict asymptote to only move up to the closest point
+    if (
+      k < point1[0] === k < point2[0] &&
+      x < point1[0] === x < point2[0] &&
+      x !== point1[0] &&
+      x !== point2[0]
+    ) {
       // both points are on the same side of the asymptote
       return setAxis(x)
     }

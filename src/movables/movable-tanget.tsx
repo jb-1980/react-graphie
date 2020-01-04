@@ -17,6 +17,7 @@ export const MovableTangent = ({
   point2,
   setPoint1,
   setPoint2,
+  style,
 }: propTypes) => {
   const {
     range: [xrange],
@@ -29,8 +30,13 @@ export const MovableTangent = ({
 
   const _setPoint1 = (p: number[]) => (p[0] === point2[0] ? null : setPoint1(p))
   const _setPoint2 = (p: number[]) => (p[0] === point1[0] ? null : setPoint2(p))
+
+  let tangentStyle = {
+    stroke: KhanColors.BLUE,
+    ...style,
+  }
   return (
-    <g>
+    <g style={tangentStyle}>
       <Plot fn={fn} shade={false} swapAxes={false} range={xrange} />
       <MovablePoint point={point1} setPoint={_setPoint1} />
       <MovablePoint point={point2} setPoint={_setPoint2} />

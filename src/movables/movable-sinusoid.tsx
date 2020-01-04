@@ -26,8 +26,13 @@ export const MovableSinusoid = ({
     p[0] === maxpoint[0] ? null : setMidpoint(p)
   let _setMaxpoint = (p: number[]) =>
     p[0] === midpoint[0] ? null : setMaxpoint(p)
+
+  let sinusoidStyle = {
+    stroke: KhanColors.BLUE,
+    ...style,
+  }
   return (
-    <g style={style}>
+    <g style={sinusoidStyle}>
       <Sinusoid a={a} b={b} c={c} d={d} />
       <MovablePoint point={midpoint} setPoint={_setMidpoint} />
       <MovablePoint point={maxpoint} setPoint={_setMaxpoint} />

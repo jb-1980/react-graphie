@@ -21,8 +21,6 @@ export const Sinusoid = ({ a, b, c, d, style }: sinusoidProps) => {
 
   const sinusoidStyle = {
     fill: "none",
-    stroke: "#000",
-    strokeWidth: 2,
     ...style,
   }
   return <path d={path} style={sinusoidStyle} />

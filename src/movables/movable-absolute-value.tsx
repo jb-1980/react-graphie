@@ -36,8 +36,12 @@ export const MovableAbsoluteValue = ({
   const _setVertex = (p: number[]) => (p[0] === point[0] ? null : setVertex(p))
   const _setPoint = (p: number[]) => (p[0] === vertex[0] ? null : setPoint(p))
 
+  let absoluteValueStyle = {
+    stroke: KhanColors.BLUE,
+    ...style,
+  }
   return (
-    <g style={style}>
+    <g style={absoluteValueStyle}>
       <Line start={left} end={vertex} />
       <Line start={vertex} end={right} />
       <MovablePoint point={vertex} setPoint={_setVertex} />

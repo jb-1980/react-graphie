@@ -6,9 +6,10 @@ import KhanColors from "../util/colors"
 type propType = {
   point: number[]
   setPoint: (p: number[]) => any
+  snap?: number[]
   style?: any
 }
-export const MovablePoint = ({ point, setPoint, style }: propType) => {
+export const MovablePoint = ({ point, setPoint, snap, style }: propType) => {
   const {
     range,
     scale,
@@ -16,6 +17,7 @@ export const MovablePoint = ({ point, setPoint, style }: propType) => {
     isDragging,
     setIsDragging,
     mouseMove,
+    snap: defaultSnap,
   } = useGraphie()
 
   let ref = React.useRef()
@@ -24,7 +26,8 @@ export const MovablePoint = ({ point, setPoint, style }: propType) => {
     if (isDragging === ref.current && mouseMove) {
       let { offsetX, offsetY } = mouseMove.nativeEvent
       let _point = GraphUtils.unscalePoint([offsetX, offsetY], range, scale)
-      setPoint(_point)
+
+      setPoint(GraphUtils.snapCoord(_point, snap ? snap : defaultSnap))
     }
   }, [isDragging, mouseMove])
 
