@@ -23,6 +23,7 @@ export const Plot = ({ fn, range, swapAxes, shade, fn2, style }: propTypes) => {
           <Parametric
             fn={x => [x, fn(x)]}
             shade={shade}
+            range={range}
             fn2={x => [x, fn2(x)]}
             style={style}
           />
@@ -31,6 +32,13 @@ export const Plot = ({ fn, range, swapAxes, shade, fn2, style }: propTypes) => {
         throw new Error("fn2 should only be set when 'shade' is True.")
       }
     }
-    return <Parametric fn={x => [x, fn(x)]} shade={shade} style={style} />
+    return (
+      <Parametric
+        fn={x => [x, fn(x)]}
+        range={range}
+        shade={shade}
+        style={style}
+      />
+    )
   }
 }

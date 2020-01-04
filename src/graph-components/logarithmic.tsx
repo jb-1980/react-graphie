@@ -30,15 +30,13 @@ export const Logarithmic = ({
     log = (x: number) => Math.log(x) / Math.log(b)
   }
 
-  const fn = (x: number) => a * log(x - h) + k
+  const fn = (x: number) => (x > h ? a * log(x - h) + k : a * log(h - x) + k)
+  const _range = range ? range : h < xrange[1] ? [h, xrange[1]] : null
+
+  console.log({ range, _range, h, xrange })
+  if (!_range) return null
 
   return (
-    <Plot
-      fn={fn}
-      range={range ? range : xrange}
-      swapAxes={false}
-      shade={false}
-      style={style}
-    />
+    <Plot fn={fn} range={_range} swapAxes={false} shade={false} style={style} />
   )
 }

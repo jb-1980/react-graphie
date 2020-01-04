@@ -6,12 +6,14 @@ import { Path } from "./path"
 type propTypes = {
   fn: (x: number) => number[]
   shade?: boolean
+  range?: number[]
   fn2?: (t: number) => number[]
   style?: {}
 }
 export const Parametric = ({
   fn,
   shade = false,
+  range,
   fn2 = t => [t, 0],
   style,
 }: propTypes) => {
@@ -40,9 +42,9 @@ export const Parametric = ({
   const clippedFn = (x: number) => clipper(fn(x))
   const clippedFn2 = (x: number) => clipper(fn2(x))
 
-  const min = xrange[0]
-  const max = xrange[1]
-
+  const min = range ? range[0] : xrange[0]
+  const max = range ? range[1] : xrange[1]
+  console.log({ min, max, range, xrange })
   let step = (max - min) / (2 * scale[0])
   if (step === 0) {
     step = 1

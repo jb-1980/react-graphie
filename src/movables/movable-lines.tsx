@@ -47,8 +47,7 @@ export const MovableLineRay = ({
   } = useGraphie()
   // need to extend the line beyond the view, so points have to be modified to be
   // collinear and far away.
-  let m = GraphUtils.getSlope(point1, point2)
-  let b = GraphUtils.getIntercept(point1, point2)
+  let [m, b] = GraphUtils.getSlopeIntercept(point1, point2)
 
   const y = x => m * x + b
   let end, ycoord
@@ -91,8 +90,7 @@ export const MovableLine = ({
   } = useGraphie()
   // need to extend the line beyond the view, so points have to be modified to be
   // collinear and far away.
-  let m = GraphUtils.getSlope(point1, point2)
-  let b = GraphUtils.getIntercept(point1, point2)
+  let [m, b] = GraphUtils.getSlopeIntercept(point1, point2)
 
   const y = x => m * x + b
 

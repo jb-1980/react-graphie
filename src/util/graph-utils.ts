@@ -29,6 +29,11 @@ class GraphUtils {
   getIntercept = (point1: number[], point2: number[]) =>
     point1[1] - this.getSlope(point1, point2) * point1[0]
 
+  getSlopeIntercept = (point1: number[], point2: number[]) => {
+    let m = this.getSlope(point1, point2)
+    return [m, point2[1] - m * point2[0]]
+  }
+
   getDistance = (point1: number[], point2: number[]) =>
     kpoint.distanceToPoint(point1, point2)
 

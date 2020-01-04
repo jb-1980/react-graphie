@@ -9,7 +9,10 @@ type propTypes = {
 }
 export const Path = ({ points, closed = false, style }: propTypes) => {
   const { range, scale } = useGraphie()
-  const path = GraphUtils.svgPath(points, range, scale, closed)
+  const path = React.useMemo(
+    () => GraphUtils.svgPath(points, range, scale, closed),
+    [points, range, scale, closed]
+  )
 
   let pathStyle = {
     fill: "none",

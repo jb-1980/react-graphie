@@ -44,8 +44,11 @@ export const MovableExponential = ({
   // we want to make sure that both points are above or below the asymptote.
   // So if we move a point across the asymptote we need to reflect the other one
   const _setPoint1 = (p: number[]) => {
+    // cannot have the same x value
+    if (p[0] === point2[0]) return null
+
     if (p[1] < k !== point2[1] < k) {
-      // point has crossed the asymptote
+      // point has crossed the asymptote so reflect the other
       setPoint1(p)
       setPoint2([point2[0], -point2[1]])
     } else {
@@ -55,8 +58,11 @@ export const MovableExponential = ({
 
   // make sure we reflect the point the same across the asymptote
   const _setPoint2 = (p: number[]) => {
+    // cannot have the same x value
+    if (p[0] === point1[0]) return null
+
     if (p[1] < k !== point1[1] < k) {
-      // point has crossed the asymptote
+      // point has crossed the asymptote so reflect the other
       setPoint2(p)
       setPoint1([point1[0], -point1[1]])
     } else {
