@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cc245383.chunk.css",
+    "main.js": "/static/js/main.2d140dc7.chunk.js",
+    "main.js.map": "/static/js/main.2d140dc7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5a7830cb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5a7830cb.js.map",
+    "static/css/2.53624d82.chunk.css": "/static/css/2.53624d82.chunk.css",
+    "static/js/2.266838a8.chunk.js": "/static/js/2.266838a8.chunk.js",
+    "static/js/2.266838a8.chunk.js.map": "/static/js/2.266838a8.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c1f635c59bf4994582a1db689265cff4.js": "/precache-manifest.c1f635c59bf4994582a1db689265cff4.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.53624d82.chunk.css.map": "/static/css/2.53624d82.chunk.css.map",
+    "static/css/main.cc245383.chunk.css.map": "/static/css/main.cc245383.chunk.css.map",
+    "static/media/katex.min.css": "/static/media/KaTeX_Typewriter-Regular.6cc31ea5.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5a7830cb.js",
+    "static/css/2.53624d82.chunk.css",
+    "static/js/2.266838a8.chunk.js",
+    "static/css/main.cc245383.chunk.css",
+    "static/js/main.2d140dc7.chunk.js"
+  ]
+}
