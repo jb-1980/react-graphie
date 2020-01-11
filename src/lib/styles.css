@@ -1,0 +1,85 @@
+:root {
+  --graphie-BLUE: #6495ED;
+  --graphie-ORANGE: #FFA500;
+  --graphie-PINK: #FF00AF;
+  --graphie-GREEN: #28AE7B;
+  --graphie-PURPLE: #9D38BD;
+  --graphie-RED: #DF0030;
+  --graphie-GRAY: gray;
+  --graphie-BLACK: black;
+  --graphie-LIGHT_BLUE: #9AB8ED;
+  --graphie-LIGHT_ORANGE: #EDD19B;
+  --graphie-LIGHT_PINK: #ED9BD3;
+  --graphie-LIGHT_GREEN: #9BEDCE;
+  --graphie-LIGHT_PURPLE: #DA9BED;
+  --graphie-LIGHT_RED: #ED9AAC;
+  --graphie-LIGHT_GRAY: #ED9B9B;
+  --graphie-LIGHT_BLACK: #ED9B9B;
+  --graphie-GRAY10: #D6D6D6;
+  --graphie-GRAY20: #CDCDCD;
+  --graphie-GRAY30: #B3B3B3;
+  --graphie-GRAY40: #9A9A9A;
+  --graphie-GRAY50: #808080;
+  --graphie-GRAY60: #666666;
+  --graphie-GRAY70: #4D4D4D;
+  --graphie-GRAY80: #333333;
+  --graphie-GRAY90: #1A1A1A;
+  --graphie-BLUE_A: #CCFAFF;
+  --graphie-BLUE_B: #80F6FF;
+  --graphie-BLUE_C: #63D9EA;
+  --graphie-BLUE_D: #11ACCD;
+  --graphie-BLUE_E: #0C7F99;
+  --graphie-TEAL_A: #94FFF5;
+  --graphie-TEAL_B: #26EDD5;
+  --graphie-TEAL_C: #01D1C1;
+  --graphie-TEAL_D: #01A995;
+  --graphie-TEAL_E: #208170;
+  --graphie-GREEN_A: #B6FFB0;
+  --graphie-GREEN_B: #8AF281;
+  --graphie-GREEN_C: #74CF70;
+  --graphie-GREEN_D: #1FAB54;
+  --graphie-GREEN_E: #0D923F;
+  --graphie-GOLD_A: #FFD0A9;
+  --graphie-GOLD_B: #FFBB71;
+  --graphie-GOLD_C: #FF9C39;
+  --graphie-GOLD_D: #E07D10;
+  --graphie-GOLD_E: #A75A05;
+  --graphie-RED_A: #FCA9A9;
+  --graphie-RED_B: #FF8482;
+  --graphie-RED_C: #F9685D;
+  --graphie-RED_D: #E84D39;
+  --graphie-RED_E: #BC2612;
+  --graphie-MAROON_A: #FFBDE0;
+  --graphie-MAROON_B: #FF92C6;
+  --graphie-MAROON_C: #ED5FA6;
+  --graphie-MAROON_D: #CA337C;
+  --graphie-MAROON_E: #9E034E;
+  --graphie-PURPLE_A: #DDD7FF;
+  --graphie-PURPLE_B: #C6B9FC;
+  --graphie-PURPLE_C: #AA87FF;
+  --graphie-PURPLE_D: #7854AB;
+  --graphie-PURPLE_E: #543B78;
+  --graphie-MINT_A: #F5F9E8;
+  --graphie-MINT_B: #EDF2DF;
+  --graphie-MINT_C: #E0E5CC;
+  --graphie-GRAY_A: #F6F7F7;
+  --graphie-GRAY_B: #F0F1F2;
+  --graphie-GRAY_C: #E3E5E6;
+  --graphie-GRAY_D: #D6D8DA;
+  --graphie-GRAY_E: #BABEC2;
+  --graphie-GRAY_F: #888D93;
+  --graphie-GRAY_G: #626569;
+  --graphie-GRAY_H: #3B3E40;
+  --graphie-GRAY_I: #21242C;
+  --graphie-KA_BLUE: #314453;
+  --graphie-KA_GREEN: #71B307;
+}
+
+.graphie {
+  stroke: #000;
+  stroke-width: 3px;
+}
+
+.graphie-arc {
+  fill: none;
+}
